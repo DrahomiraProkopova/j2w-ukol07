@@ -1,0 +1,29 @@
+package cz.czechitas.java2webapps.ukol7.controller;
+
+import cz.czechitas.java2webapps.ukol7.service.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class PostController {
+
+    @Autowired
+    private PostService postService;
+
+    @GetMapping("/")
+    public ModelAndView list() {
+        ModelAndView modelAndView = new ModelAndView("seznam");
+        modelAndView.addObject("posts", postService.list());
+        return modelAndView;
+    }
+
+    @GetMapping("/detail/{slug}")
+    public ModelAndView detail(@PathVariable String slug) {
+        ModelAndView modelAndView = new ModelAndView("detail");
+        modelAndView.addObject("post", postService.singlePost(slug));
+        return modelAndView;
+    }
+}

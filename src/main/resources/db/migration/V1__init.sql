@@ -11,3 +11,6 @@ CREATE TABLE post
 
 CREATE
     INDEX ON post(published);
+
+
+
