@@ -11,9 +11,9 @@
 <body>
 <div class="seznam">
 
-    <h1>Seznam osob</h1>
+    <h1>Seznam blogů</h1>
 
-    [#list posts as post]
+    [#list posts.content]
         <table class="u-full-width">
             <thead>
             <tr>
@@ -24,13 +24,14 @@
             </tr>
             </thead>
             <tbody>
+            [#items as post]
                 <tr>
-
                     <td>${post.author}</td>
                     <td><a href="http://localhost:8080/detail/${post.slug}" class="page">${post.title}</a></td>
                     <td>${post.perex?no_esc}</td>
                     <td>${post.published?date?string}</td>
                 </tr>
+            [/#items]
             </tbody>
         </table>
     [#else]
